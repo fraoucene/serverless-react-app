@@ -1,4 +1,4 @@
-# AWS Serverless React App
+# AWS Serverless React App 2
 
 A reference project to deploy a serverless, full-stack React app onto AWS with Terraform. Inspired by [this](https://www.youtube.com/watch?v=Bro0uFVDrWY) YouTube tutorial by Code Engine
 
