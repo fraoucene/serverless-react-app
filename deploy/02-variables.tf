@@ -11,7 +11,7 @@ variable "github_project_name" {
 }
 
 variable "bucket_name" {
-  default = "fra-aws-react-serverless2"
+  default = "fra-serverless-react-app"
 }
 
 variable "todos_table_name" {
