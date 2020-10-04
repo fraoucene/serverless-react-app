@@ -62,7 +62,7 @@ resource "aws_codepipeline" "react-serverless-codepipeline" {
       configuration = {
         Owner      = var.github_username
         Repo       = var.github_project_name
-        Branch     = "dev"
+        Branch     = "master"
         OAuthToken = var.github_token
       }
     }
