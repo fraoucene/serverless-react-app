@@ -81,7 +81,7 @@ const HomePage = () => {
           <PageHeader
             className="site-page-header"
             title={`Welcome ${currnetUsername}`}
-            subTitle="To-do list powered by AWS serverless architecture"
+            subTitle="To-do list powered by AWS serverless architecture (api geteway, dynamoDB, lambda function)"
             style={styles.header}
           />
         </div>
