@@ -7,7 +7,7 @@ variable "github_username" {
 }
 
 variable "github_project_name" {
-  default = "react-serverless-aws-terraform"
+  default = "serverless-react-app"
 }
 
 variable "bucket_name" {
