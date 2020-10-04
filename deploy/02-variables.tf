@@ -1,5 +1,5 @@
 variable "github_token" { 
-  default = "35c8e94aaa7ba65032a6f0509d7dc0f2895a9da6"  
+  default = "3f3b028bf32c075d37ff48bf969e5e1e43266f28"  
 }
 
 variable "github_username" {
