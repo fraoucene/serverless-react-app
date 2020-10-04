@@ -19,14 +19,14 @@ exports.handler = (event, context, callback) => {
     const params = {
       ExpressionAttributeValues: {
         ":v1": {
-          S: commentId
-        }
+          S: commentId,
+        },
       },
       KeyConditionExpression: "commentId = :v1",
       IndexName: "commentIdIndex",
-      TableName: "likes"
+      TableName: "likes",
     };
-    ddb.query(params, function(err, data) {
+    ddb.query(params, function (err, data) {
       if (err) {
         responseCode = 500;
         responseBody = err;
@@ -42,9 +42,9 @@ exports.handler = (event, context, callback) => {
         statusCode: responseCode,
         headers: {
           "content-type": "application/json",
-          "Access-Control-Allow-Origin": "*"
+          "Access-Control-Allow-Origin": "*",
         },
-        body: JSON.stringify(responseBody)
+        body: JSON.stringify(responseBody),
       };
       callback(null, response);
     });
@@ -52,10 +52,10 @@ exports.handler = (event, context, callback) => {
     let responseCode = 200;
     let responseBody = "";
     const params = {
-      TableName: "likes"
+      TableName: "likes",
     };
 
-    ddb.scan(params, function(err, data) {
+    ddb.scan(params, function (err, data) {
       if (err) {
         console.log("Error", err);
         responseCode = 500;
@@ -68,9 +68,9 @@ exports.handler = (event, context, callback) => {
         statusCode: responseCode,
         headers: {
           "content-type": "application/json",
-          "Access-Control-Allow-Origin": "*"
+          "Access-Control-Allow-Origin": "*",
         },
-        body: JSON.stringify(responseBody)
+        body: JSON.stringify(responseBody),
       };
       callback(null, response);
     });
