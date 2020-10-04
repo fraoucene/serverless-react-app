@@ -1,11 +1,3 @@
-variable "github_username" {
-  default = "fraoucene"
-}
-
-variable "github_project_name" {
-  default = "serverless-react-app"
-}
-
 variable "bucket_name" {
   default = "fra-serverless-react-app"
 }
