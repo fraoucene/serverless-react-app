@@ -90,3 +90,29 @@ resource "aws_lambda_permission" "lambda_permission_delete_like_by_id" {
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_api_gateway_rest_api.react-serverless.execution_arn}/*/DELETE/likes/*"
 }
+
+resource "aws_lambda_permission" "lambda_permission_create_share" {
+  statement_id  = "AllowExecutionFromAPIGatewayUCI"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.create_share.function_name
+  principal     = "apigateway.amazonaws.com"
+  # More: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html
+  source_arn = "${aws_api_gateway_rest_api.react-serverless.execution_arn}/*/POST/shares"
+}
+
+resource "aws_lambda_permission" "lambda_permission_get_shares" {
+  statement_id  = "AllowExecutionFromAPIGatewayUCI"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.get_shares.function_name
+  principal     = "apigateway.amazonaws.com"
+  # More: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html
+  source_arn = "${aws_api_gateway_rest_api.react-serverless.execution_arn}/*/GET/shares"
+}
+
+resource "aws_lambda_permission" "lambda_permission_delete_share_by_id" {
+  statement_id  = "AllowExecutionFromAPIGatewayUCI"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.delete_share_by_id.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_api_gateway_rest_api.react-serverless.execution_arn}/*/DELETE/shares/*"
+}

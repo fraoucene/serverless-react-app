@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { PageHeader, Spin, Card, Input, Button } from "antd";
 import { API } from "aws-amplify";
 import Likes from "./Likes";
+import Shares from "./Shares";
 
 const CommentsList = ({ todoId, username }) => {
   const initialFormState = { content: "" };
@@ -32,15 +33,15 @@ const CommentsList = ({ todoId, username }) => {
       const comment = {
         ...formState,
         todoId,
-        username
+        username,
       };
       setFormState(initialFormState);
 
       const config = {
         body: comment,
         headers: {
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       };
       await API.post("todos", "/comments", config);
       fetchComments();
@@ -51,7 +52,7 @@ const CommentsList = ({ todoId, username }) => {
 
   async function removeComment(id) {
     try {
-      setComments(comments.filter(comment => comment.commentId.S !== id));
+      setComments(comments.filter((comment) => comment.commentId.S !== id));
       await API.del("todos", `/comments/${id}`);
     } catch (err) {
       console.log("error removing comment:", err);
@@ -67,7 +68,7 @@ const CommentsList = ({ todoId, username }) => {
       />
       <div>
         <Input
-          onChange={event => setInput("content", event.target.value)}
+          onChange={(event) => setInput("content", event.target.value)}
           value={formState.content}
           placeholder="Comment"
           style={styles.input}
@@ -94,6 +95,7 @@ const CommentsList = ({ todoId, username }) => {
                 </Button>
               )}
               <Likes commentId={comment.commentId.S} username={username} />
+              <Shares commentId={comment.commentId.S} username={username} />
             </Card>
           ))}
         </div>
@@ -106,15 +108,15 @@ const CommentsList = ({ todoId, username }) => {
 
 const styles = {
   input: {
-    margin: "10px 0"
+    margin: "10px 0",
   },
   submit: {
     margin: "10px 0",
-    marginBottom: "20px"
+    marginBottom: "20px",
   },
   header: {
-    paddingLeft: "0px"
-  }
+    paddingLeft: "0px",
+  },
 };
 
 export default CommentsList;

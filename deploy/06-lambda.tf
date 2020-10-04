@@ -94,6 +94,30 @@ resource "aws_lambda_function" "delete_like_by_id" {
   role          = aws_iam_role.lambda_exec.arn
 }
 
+resource "aws_lambda_function" "create_share" {
+  function_name = "CreateShare"
+  filename      = "lambdas/createShare.zip"
+  handler       = "createShare.handler"
+  runtime       = "nodejs10.x"
+  role          = aws_iam_role.lambda_exec.arn
+}
+
+resource "aws_lambda_function" "get_shares" {
+  function_name = "GetShares"
+  filename      = "lambdas/getShares.zip"
+  handler       = "getShares.handler"
+  runtime       = "nodejs10.x"
+  role          = aws_iam_role.lambda_exec.arn
+}
+
+resource "aws_lambda_function" "delete_share_by_id" {
+  function_name = "DeleteShareById"
+  filename      = "lambdas/deleteShareById.zip"
+  handler       = "deleteShareById.handler"
+  runtime       = "nodejs10.x"
+  role          = aws_iam_role.lambda_exec.arn
+}
+
 # IAM role which dictates what other AWS services the Lambda function
 # may access.
 resource "aws_iam_role" "lambda_exec" {
@@ -158,7 +182,9 @@ resource "aws_iam_role_policy" "lambda_policy" {
               "arn:aws:dynamodb:*:*:table/${var.todos_table_name}/index/*",
               "arn:aws:dynamodb:*:*:table/${var.comments_table_name}/index/*",
               "arn:aws:dynamodb:*:*:table/${var.likes_table_name}",
-              "arn:aws:dynamodb:*:*:table/${var.likes_table_name}/index/*"
+              "arn:aws:dynamodb:*:*:table/${var.likes_table_name}/index/*",
+              "arn:aws:dynamodb:*:*:table/${var.shares_table_name}",
+              "arn:aws:dynamodb:*:*:table/${var.shares_table_name}/index/*"
             ]
         }
     ]

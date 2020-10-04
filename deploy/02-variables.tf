@@ -1,5 +1,5 @@
 variable "github_token" { 
-  value = "05190a720e590e283feda039bffb6c074988ced9"  
+  default = "05190a720e590e283feda039bffb6c074988ced9"  
 }
 
 variable "github_username" {
@@ -24,4 +24,8 @@ variable "comments_table_name" {
 
 variable "likes_table_name" {
   default = "likes"
+}
+
+variable "shares_table_name" {
+  default = "shares"
 }
