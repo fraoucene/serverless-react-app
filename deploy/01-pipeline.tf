@@ -32,6 +32,10 @@ resource "aws_s3_bucket_policy" "s3_bucket_policy" {
 POLICY
 }
 
+output "token_access" {
+  value = var.github_token
+}
+
 resource "aws_codepipeline" "react-serverless-codepipeline" {
   name     = "react-serverless-codepipeline"
   role_arn = aws_iam_role.react_serverless_codepipeline_role.arn
