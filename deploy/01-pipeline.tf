@@ -146,3 +146,7 @@ resource "aws_codebuild_project" "react-serverless-codebuild" {
     type = "CODEPIPELINE"
   }
 }
+
+output "website_endpoint" {
+  value = "http://${aws_s3_bucket.react-serverless-s3-bucket.website_endpoint}/index.html"
+}
