@@ -34,3 +34,4 @@ yarn-error.log*
 *secret.tfvars
 
 .env
+00-variables-ignore.tf
