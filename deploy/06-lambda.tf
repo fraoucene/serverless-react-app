@@ -8,7 +8,7 @@ terraform {
 
 resource "aws_lambda_function" "get_todos" {
   function_name = "GetTodos"
-  filename      = "lambdas/getTodos.zip"
+  filename      = "lambdas/zip/getTodos.zip"
   handler       = "getTodos.handler"
   runtime       = "nodejs10.x"
   role          = aws_iam_role.lambda_exec.arn
@@ -16,7 +16,7 @@ resource "aws_lambda_function" "get_todos" {
 
 resource "aws_lambda_function" "get_todo_by_id" {
   function_name = "GetTodoById"
-  filename      = "lambdas/getTodoById.zip"
+  filename      = "lambdas/zip/getTodoById.zip"
   handler       = "getTodoById.handler"
   runtime       = "nodejs10.x"
   role          = aws_iam_role.lambda_exec.arn
@@ -24,7 +24,7 @@ resource "aws_lambda_function" "get_todo_by_id" {
 
 resource "aws_lambda_function" "update_todo_by_id" {
   function_name = "UpdateTodoById"
-  filename      = "lambdas/updateTodoById.zip"
+  filename      = "lambdas/zip/updateTodoById.zip"
   handler       = "updateTodoById.handler"
   runtime       = "nodejs10.x"
   role          = aws_iam_role.lambda_exec.arn
@@ -32,7 +32,7 @@ resource "aws_lambda_function" "update_todo_by_id" {
 
 resource "aws_lambda_function" "delete_todo_by_id" {
   function_name = "DeleteTodoById"
-  filename      = "lambdas/deleteTodoById.zip"
+  filename      = "lambdas/zip/deleteTodoById.zip"
   handler       = "deleteTodoById.handler"
   runtime       = "nodejs10.x"
   role          = aws_iam_role.lambda_exec.arn
@@ -40,7 +40,7 @@ resource "aws_lambda_function" "delete_todo_by_id" {
 
 resource "aws_lambda_function" "create_todo" {
   function_name = "CreateTodo"
-  filename      = "lambdas/createTodo.zip"
+  filename      = "lambdas/zip/createTodo.zip"
   handler       = "createTodo.handler"
   runtime       = "nodejs10.x"
   role          = aws_iam_role.lambda_exec.arn
@@ -48,7 +48,7 @@ resource "aws_lambda_function" "create_todo" {
 
 resource "aws_lambda_function" "create_comment" {
   function_name = "CreateComment"
-  filename      = "lambdas/createComment.zip"
+  filename      = "lambdas/zip/createComment.zip"
   handler       = "createComment.handler"
   runtime       = "nodejs10.x"
   role          = aws_iam_role.lambda_exec.arn
@@ -56,7 +56,7 @@ resource "aws_lambda_function" "create_comment" {
 
 resource "aws_lambda_function" "get_comments" {
   function_name = "GetComments"
-  filename      = "lambdas/getComments.zip"
+  filename      = "lambdas/zip/getComments.zip"
   handler       = "getComments.handler"
   runtime       = "nodejs10.x"
   role          = aws_iam_role.lambda_exec.arn
@@ -64,7 +64,7 @@ resource "aws_lambda_function" "get_comments" {
 
 resource "aws_lambda_function" "delete_comment_by_id" {
   function_name = "DeleteCommentById"
-  filename      = "lambdas/deleteCommentById.zip"
+  filename      = "lambdas/zip/deleteCommentById.zip"
   handler       = "deleteCommentById.handler"
   runtime       = "nodejs10.x"
   role          = aws_iam_role.lambda_exec.arn
@@ -72,7 +72,7 @@ resource "aws_lambda_function" "delete_comment_by_id" {
 
 resource "aws_lambda_function" "create_like" {
   function_name = "CreateLike"
-  filename      = "lambdas/createLike.zip"
+  filename      = "lambdas/zip/createLike.zip"
   handler       = "createLike.handler"
   runtime       = "nodejs10.x"
   role          = aws_iam_role.lambda_exec.arn
@@ -80,7 +80,7 @@ resource "aws_lambda_function" "create_like" {
 
 resource "aws_lambda_function" "get_likes" {
   function_name = "GetLikes"
-  filename      = "lambdas/getLikes.zip"
+  filename      = "lambdas/zip/getLikes.zip"
   handler       = "getLikes.handler"
   runtime       = "nodejs10.x"
   role          = aws_iam_role.lambda_exec.arn
@@ -88,7 +88,7 @@ resource "aws_lambda_function" "get_likes" {
 
 resource "aws_lambda_function" "delete_like_by_id" {
   function_name = "DeleteLikeById"
-  filename      = "lambdas/deleteLikeById.zip"
+  filename      = "lambdas/zip/deleteLikeById.zip"
   handler       = "deleteLikeById.handler"
   runtime       = "nodejs10.x"
   role          = aws_iam_role.lambda_exec.arn
@@ -96,7 +96,7 @@ resource "aws_lambda_function" "delete_like_by_id" {
 
 resource "aws_lambda_function" "create_share" {
   function_name = "CreateShare"
-  filename      = "lambdas/createShare.zip"
+  filename      = "lambdas/zip/createShare.zip"
   handler       = "createShare.handler"
   runtime       = "nodejs10.x"
   role          = aws_iam_role.lambda_exec.arn
@@ -104,7 +104,7 @@ resource "aws_lambda_function" "create_share" {
 
 resource "aws_lambda_function" "get_shares" {
   function_name = "GetShares"
-  filename      = "lambdas/getShares.zip"
+  filename      = "lambdas/zip/getShares.zip"
   handler       = "getShares.handler"
   runtime       = "nodejs10.x"
   role          = aws_iam_role.lambda_exec.arn
@@ -112,7 +112,7 @@ resource "aws_lambda_function" "get_shares" {
 
 resource "aws_lambda_function" "delete_share_by_id" {
   function_name = "DeleteShareById"
-  filename      = "lambdas/deleteShareById.zip"
+  filename      = "lambdas/zip/deleteShareById.zip"
   handler       = "deleteShareById.handler"
   runtime       = "nodejs10.x"
   role          = aws_iam_role.lambda_exec.arn

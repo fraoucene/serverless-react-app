@@ -31,7 +31,7 @@ const HomePage = () => {
       setLoadingComplete({ loadingComplete: true });
     } catch (err) {
       console.log(err);
-      console.log("error fetching todos");
+      console.log("error fetching todos...");
     }
   }
 
@@ -55,8 +55,8 @@ const HomePage = () => {
       const config = {
         body: todo,
         headers: {
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       };
       await API.post("todos", "/todos", config);
       fetchTodos();
@@ -67,7 +67,7 @@ const HomePage = () => {
 
   async function removeTodo(id) {
     try {
-      setTodos(todos.filter(todo => todo.todoId.S !== id));
+      setTodos(todos.filter((todo) => todo.todoId.S !== id));
       await API.del("todos", `/todos/${id}`);
     } catch (err) {
       console.log("error removing todo:", err);
@@ -87,13 +87,13 @@ const HomePage = () => {
         </div>
         <div>
           <Input
-            onChange={event => setInput("name", event.target.value)}
+            onChange={(event) => setInput("name", event.target.value)}
             value={formState.name}
             placeholder="Name"
             style={styles.input}
           />
           <Input
-            onChange={event => setInput("description", event.target.value)}
+            onChange={(event) => setInput("description", event.target.value)}
             value={formState.description}
             placeholder="Description"
             style={styles.input}
@@ -141,15 +141,15 @@ const HomePage = () => {
 
 const styles = {
   input: {
-    margin: "10px 0"
+    margin: "10px 0",
   },
   submit: {
     margin: "10px 0",
-    marginBottom: "20px"
+    marginBottom: "20px",
   },
   header: {
-    paddingLeft: "0px"
-  }
+    paddingLeft: "0px",
+  },
 };
 
 export default HomePage;
