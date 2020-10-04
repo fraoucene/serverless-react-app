@@ -1,7 +1,3 @@
-variable "github_token" { 
-  default = "${process.env.GITHUB_ACCESS_TOKENS}"
-}
-
 variable "github_username" {
   default = "fraoucene"
 }
