@@ -7,6 +7,8 @@ import * as serviceWorker from "./serviceWorker";
 // Amplify
 import { Amplify } from "aws-amplify";
 import config from "../src/conf/config";
+import { Provider } from "react-redux";
+import store from "./store";
 
 Amplify.configure({
   Auth: {
@@ -14,22 +16,24 @@ Amplify.configure({
     region: config.cognito.REGION,
     userPoolId: config.cognito.USER_POOL_ID,
     identityPoolId: config.cognito.IDENTITY_POOL_ID,
-    userPoolWebClientId: config.cognito.APP_CLIENT_ID
+    userPoolWebClientId: config.cognito.APP_CLIENT_ID,
   },
   API: {
     endpoints: [
       {
         name: "todos",
         endpoint: config.apiGateway.URL,
-        region: config.apiGateway.REGION
-      }
-    ]
-  }
+        region: config.apiGateway.REGION,
+      },
+    ],
+  },
 });
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

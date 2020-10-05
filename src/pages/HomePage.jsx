@@ -4,13 +4,13 @@ import { PageHeader } from "antd";
 import { Card, Button, Input } from "antd";
 import "antd/dist/antd.css";
 import { Layout, Spin } from "antd";
-import { API, Auth } from "aws-amplify";
+import { Auth } from "aws-amplify";
+import { fetchTodos, addTodo, removeTodo } from "../actions/todos";
+import { connect } from "react-redux";
 
 const { Content } = Layout;
 
-const HomePage = () => {
-  const [todos, setTodos] = useState([]);
-  const [loadingComplete, setLoadingComplete] = useState(false);
+const HomePage = ({ fetchTodos, todos, addTodo, removeTodo }) => {
   const [currnetUsername, setCurrnetUsername] = useState("");
   const initialFormState = { name: "", description: "" };
   const [formState, setFormState] = useState(initialFormState);
@@ -18,21 +18,10 @@ const HomePage = () => {
   useEffect(() => {
     fetchCurrnetUsername();
     fetchTodos();
-  }, []);
+  }, [fetchTodos]);
 
   function setInput(key, value) {
     setFormState({ ...formState, [key]: value });
-  }
-
-  async function fetchTodos() {
-    try {
-      const res = await API.get("todos", "/todos");
-      setTodos(res.Items);
-      setLoadingComplete({ loadingComplete: true });
-    } catch (err) {
-      console.log(err);
-      console.log("error fetching todos...");
-    }
   }
 
   async function fetchCurrnetUsername() {
@@ -42,35 +31,6 @@ const HomePage = () => {
     } catch (err) {
       console.log(err);
       console.log("error fetching current username");
-    }
-  }
-
-  async function addTodo() {
-    try {
-      if (!formState.name || !formState.description) return;
-      const todo = { ...formState, username: currnetUsername };
-      setTodos([...todos, todo]);
-      setFormState(initialFormState);
-
-      const config = {
-        body: todo,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      await API.post("todos", "/todos", config);
-      fetchTodos();
-    } catch (err) {
-      console.log("error creating todo:", err);
-    }
-  }
-
-  async function removeTodo(id) {
-    try {
-      setTodos(todos.filter((todo) => todo.todoId.S !== id));
-      await API.del("todos", `/todos/${id}`);
-    } catch (err) {
-      console.log("error removing todo:", err);
     }
   }
 
@@ -98,13 +58,19 @@ const HomePage = () => {
             placeholder="Description"
             style={styles.input}
           />
-          <Button onClick={addTodo} type="primary" style={styles.submit}>
+          <Button
+            onClick={() =>
+              addTodo(formState.name, formState.name, currnetUsername)
+            }
+            type="primary"
+            style={styles.submit}
+          >
             Add
           </Button>
         </div>
-        {loadingComplete ? (
+        {todos && todos.Items && todos.Items.length ? (
           <div>
-            {todos.map((todo, index) => (
+            {todos.Items.map((todo, index) => (
               <Card
                 key={todo.todoId ? todo.todoId.S : index}
                 title={todo.name.S ? todo.name.S : todo.name}
@@ -152,4 +118,12 @@ const styles = {
   },
 };
 
-export default HomePage;
+const mapStateToProps = (s) => ({
+  todos: s.todos,
+});
+
+export default connect(mapStateToProps, {
+  fetchTodos,
+  addTodo,
+  removeTodo,
+})(HomePage);
